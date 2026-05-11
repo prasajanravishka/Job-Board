@@ -1,3 +1,5 @@
+import { generateJobId } from '../utils/idGenerator';
+
 export interface Job {
   id: string;
   title: string;
@@ -10,9 +12,8 @@ export interface Job {
   description: string;
 }
 
-export const jobs: Job[] = [
+const rawJobs: Omit<Job, 'id'>[] = [
   {
-    id: '1',
     title: 'Junior React Developer',
     company: 'TechCorp',
     type: 'Full-time',
@@ -23,7 +24,6 @@ export const jobs: Job[] = [
     description: 'TechCorp is looking for a passionate Junior React Developer to join our growing team. You will be responsible for developing new user-facing features, determining the structure and design of web pages, and building reusable code and libraries for future use.'
   },
   {
-    id: '2',
     title: 'Software Engineering Intern',
     company: 'Innovate AI',
     type: 'Internship',
@@ -34,7 +34,6 @@ export const jobs: Job[] = [
     description: 'Join Innovate AI as a Software Engineering Intern and work on cutting-edge artificial intelligence projects. You will collaborate with senior engineers to design, test, and implement scalable software solutions.'
   },
   {
-    id: '3',
     title: 'Entry-Level Python Dev',
     company: 'DataSystems',
     type: 'Full-time',
@@ -45,7 +44,6 @@ export const jobs: Job[] = [
     description: 'DataSystems is seeking an Entry-Level Python Developer. The ideal candidate will have a strong foundation in Python programming and an interest in building robust backend services.'
   },
   {
-    id: '4',
     title: 'Frontend Engineer (Vue)',
     company: 'WebSolutions',
     type: 'Full-time',
@@ -55,7 +53,6 @@ export const jobs: Job[] = [
     description: 'WebSolutions is looking for a skilled Frontend Engineer specializing in Vue.js. You will translate UI/UX design wireframes to actual code that will produce visual elements of the application.'
   },
   {
-    id: '5',
     title: 'Backend Node.js Developer',
     company: 'ServerTech',
     type: 'Contract',
@@ -66,7 +63,6 @@ export const jobs: Job[] = [
     description: 'ServerTech needs a Backend Node.js Developer on a contract basis to help scale our microservices architecture. Experience with cloud deployments is a major plus.'
   },
   {
-    id: '6',
     title: 'Full Stack Web Intern',
     company: 'StartupHub',
     type: 'Internship',
@@ -76,7 +72,6 @@ export const jobs: Job[] = [
     description: 'Get hands-on experience as a Full Stack Web Intern at StartupHub. You will work across the entire stack, from database design to frontend implementation.'
   },
   {
-    id: '7',
     title: 'Junior UI/UX Designer',
     company: 'CreativeSpace',
     type: 'Full-time',
@@ -87,7 +82,6 @@ export const jobs: Job[] = [
     description: 'CreativeSpace is hiring a Junior UI/UX Designer to create intuitive and aesthetically pleasing user interfaces. You will work closely with product managers and engineers.'
   },
   {
-    id: '8',
     title: 'DevOps Associate',
     company: 'CloudNet',
     type: 'Full-time',
@@ -97,7 +91,6 @@ export const jobs: Job[] = [
     description: 'CloudNet is looking for a DevOps Associate to assist in automating and streamlining our operations and processes. Build and maintain tools for deployment, monitoring, and operations.'
   },
   {
-    id: '9',
     title: 'Machine Learning Intern',
     company: 'AI Research Labs',
     type: 'Internship',
@@ -107,7 +100,6 @@ export const jobs: Job[] = [
     description: 'AI Research Labs offers a Machine Learning Internship for students passionate about deep learning. Contribute to research projects and help build proof-of-concept models.'
   },
   {
-    id: '10',
     title: 'Junior Mobile App Developer',
     company: 'AppWorks',
     type: 'Full-time',
@@ -118,7 +110,6 @@ export const jobs: Job[] = [
     description: 'AppWorks is searching for a Junior Mobile App Developer to build cross-platform applications using React Native. Bring innovative mobile solutions to life.'
   },
   {
-    id: '11',
     title: 'QA Engineer',
     company: 'TestMasters',
     type: 'Contract',
@@ -128,7 +119,6 @@ export const jobs: Job[] = [
     description: 'TestMasters needs a detail-oriented QA Engineer to ensure the quality of our software releases. You will create and execute test plans, report bugs, and verify fixes.'
   },
   {
-    id: '12',
     title: 'Data Analyst Intern',
     company: 'MetricsInc',
     type: 'Internship',
@@ -138,7 +128,6 @@ export const jobs: Job[] = [
     description: 'MetricsInc is looking for a Data Analyst Intern to help interpret data, analyze results using statistical techniques, and provide ongoing reports.'
   },
   {
-    id: '13',
     title: 'Junior Cybersecurity Analyst',
     company: 'SecureNet',
     type: 'Full-time',
@@ -149,7 +138,6 @@ export const jobs: Job[] = [
     description: 'SecureNet is hiring a Junior Cybersecurity Analyst to monitor our network for security breaches and investigate violations. Help protect our infrastructure from threats.'
   },
   {
-    id: '14',
     title: 'Cloud Support Engineer',
     company: 'TechGiants',
     type: 'Full-time',
@@ -159,7 +147,6 @@ export const jobs: Job[] = [
     description: 'TechGiants is seeking a Cloud Support Engineer to provide technical assistance to our cloud customers. Resolve complex issues and ensure high availability.'
   },
   {
-    id: '15',
     title: 'Technical Writer Intern',
     company: 'DocuTech',
     type: 'Internship',
@@ -169,3 +156,11 @@ export const jobs: Job[] = [
     description: 'DocuTech needs a Technical Writer Intern to produce high-quality documentation that contributes to the overall success of our products. Work with engineering teams to make products easier to use.'
   }
 ];
+
+export const jobs: Job[] = (() => {
+  const existingIds = new Set<string>();
+  return rawJobs.map((job) => ({
+    ...job,
+    id: generateJobId(job.title, job.company, existingIds),
+  }));
+})();
