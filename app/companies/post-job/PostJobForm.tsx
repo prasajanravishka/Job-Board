@@ -1,20 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { createJobAction } from './actions';
 import styles from './page.module.css';
 
 export default function PostJobForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   return (
-    <form 
-      className={styles.form} 
-      action={async (formData) => {
-        setIsSubmitting(true);
-        await createJobAction(formData);
-      }}
-    >
+    <form className={styles.form} action={createJobAction}>
       <div className={styles.formGroup}>
         <label htmlFor="title" className={styles.label}>Job Title *</label>
         <input type="text" id="title" name="title" required className={styles.input} placeholder="e.g. Senior Frontend Developer" />
@@ -69,8 +60,8 @@ export default function PostJobForm() {
       </div>
 
       <div className={styles.formActions}>
-        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
-          {isSubmitting ? 'Posting...' : 'Post Job'}
+        <button type="submit" className={styles.submitButton}>
+          Post Job
         </button>
       </div>
     </form>
