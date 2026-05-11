@@ -10,13 +10,13 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brandInfo}>
             <Link href="/" className={styles.logo}>
-              Ravishka <span className={styles.highlight}>JOB Border</span>
+              Ravishka <span className={styles.highlight}>JOB Board</span>
             </Link>
             <p className={styles.description}>
               Connecting passionate software engineering students with top tech companies worldwide. Build your career with us.
             </p>
           </div>
-          
+
           <div className={styles.linksGrid}>
             <div className={styles.linkGroup}>
               <h3 className={styles.groupTitle}>For Students</h3>
@@ -26,7 +26,7 @@ export default function Footer() {
                 <li><Link href="/salary-guide">Salary Guide</Link></li>
               </ul>
             </div>
-            
+
             <div className={styles.linkGroup}>
               <h3 className={styles.groupTitle}>For Employers</h3>
               <ul>
@@ -35,7 +35,7 @@ export default function Footer() {
                 <li><Link href="/resources">Resources</Link></li>
               </ul>
             </div>
-            
+
             <div className={styles.linkGroup}>
               <h3 className={styles.groupTitle}>Legal</h3>
               <ul>
@@ -46,9 +46,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className={styles.bottom}>
-          <p>&copy; {currentYear} Ravishka Job Border. All rights reserved.</p>
+          <p>&copy; {currentYear} Ravishka Job Board. All rights reserved.</p>
           <div className={styles.socials}>
             <a href="#" aria-label="Twitter">Twitter</a>
             <a href="#" aria-label="LinkedIn">LinkedIn</a>

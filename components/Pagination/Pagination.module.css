@@ -1,0 +1,40 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.button {
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-md);
+  color: var(--color-text-main);
+  font-weight: 500;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:hover:not(.disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.info {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    background: var(--color-background);
+  }
+}
