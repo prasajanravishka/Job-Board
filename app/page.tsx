@@ -1,6 +1,7 @@
 import Hero from '../components/Hero/Hero';
 import Pagination from '../components/Pagination/Pagination';
 import { jobs } from '../data/jobs';
+import JobCard from '../components/JobCard/JobCard';
 import styles from './page.module.css';
 
 type Props = {
@@ -58,19 +59,7 @@ export default async function Home(props: Props) {
 
           <div className={styles.jobList}>
             {currentJobs.map((job) => (
-              <div key={job.id} className={styles.jobCard}>
-                <div className={styles.jobInfo}>
-                  <h3>{job.title}</h3>
-                  <p className={styles.company}>{job.company}</p>
-                </div>
-                <div className={styles.jobMeta}>
-                  <span className={styles.tag}>{job.type}</span>
-                  <span className={styles.tag}>{job.location}</span>
-                  {job.salary && <span className={styles.tag}>{job.salary}</span>}
-                  <span className={styles.tag}>{new Date(job.postedAt).toLocaleDateString()}</span>
-                </div>
-                <button className={styles.applyBtn}>Apply Now</button>
-              </div>
+              <JobCard key={job.id} job={job} />
             ))}
           </div>
 
