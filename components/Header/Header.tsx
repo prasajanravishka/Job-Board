@@ -25,7 +25,7 @@ export default function Header() {
         
         <div className={styles.actions}>
           <Link href="/login" className={styles.loginBtn}>Sign In</Link>
-          <Link href="/post-job" className={styles.postJobBtn}>Post a Job</Link>
+          <Link href="/companies/post-job" className={styles.postJobBtn}>Post a Job</Link>
         </div>
         
         {/* Mobile menu button (placeholder for actual interactive menu) */}

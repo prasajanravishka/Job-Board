@@ -157,10 +157,18 @@ const rawJobs: Omit<Job, 'id'>[] = [
   }
 ];
 
-export const jobs: Job[] = (() => {
-  const existingIds = new Set<string>();
-  return rawJobs.map((job) => ({
-    ...job,
-    id: generateJobId(job.title, job.company, existingIds),
-  }));
-})();
+export const existingIds = new Set<string>();
+
+export const jobs: Job[] = rawJobs.map((job) => ({
+  ...job,
+  id: generateJobId(job.title, job.company, existingIds),
+}));
+
+export function addJob(newJobData: Omit<Job, 'id'>): Job {
+  const newJob: Job = {
+    ...newJobData,
+    id: generateJobId(newJobData.title, newJobData.company, existingIds),
+  };
+  jobs.unshift(newJob);
+  return newJob;
+}

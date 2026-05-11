@@ -7,11 +7,7 @@ type Props = {
   params: Promise<{ id: string }>
 }
 
-export async function generateStaticParams() {
-  return jobs.map((job) => ({
-    id: job.id,
-  }));
-}
+
 
 export default async function JobDetailPage(props: Props) {
   const params = await props.params;
